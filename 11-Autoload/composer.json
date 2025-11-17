@@ -2,7 +2,7 @@
   "name": "dylan/11-autoload",
   "autoload": {
     "psr-4": {
-      "app\\": "src/"
+      "App\\": "src/"
     }
   },
   "authors": [
