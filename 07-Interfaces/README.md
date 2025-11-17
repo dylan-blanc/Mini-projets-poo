@@ -90,7 +90,7 @@ traiterPaiement(new Bitcoin(), 100);  // Nouvelle méthode ? Aucun problème !
 
 ## ⚠️ Erreurs Fréquentes
 
-❌ Mettre du code dans l'interface (interduit !)
+❌ Mettre du code dans l'interface (interdit !)
 ❌ Oublier d'implémenter une méthode de l'interface
 ❌ Utiliser `extends` au lieu de `implements`
 

@@ -1,0 +1,15 @@
+{
+  "name": "dylan/11-autoload",
+  "autoload": {
+    "psr-4": {
+      "app\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Dylan",
+      "email": "dylan.blanc@laplateforme.io"
+    }
+  ],
+  "require": {}
+}
