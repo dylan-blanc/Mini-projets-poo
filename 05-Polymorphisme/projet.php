@@ -15,6 +15,22 @@
 // - Constructeur
 // - Méthode jouer() : "🎵 [nom] joue de la musique..."
 
+class Instrument {
+    protected $nom;
+    protected $orchestre;
+
+    public function __construct($nom) {
+        $this->nom = $nom;
+    }
+
+    public function jouer() {
+        echo $this->nom . " joue de la musique... <br>";
+    }
+
+    public function accorder() {
+        echo $this->nom . " est accordé ! <br>";
+    }
+}
 
 
 
@@ -27,6 +43,16 @@
 //   "🎸 [nom] : GLING GLING GLING ♪"
 //
 // Indice : On réécrit la même méthode dans l'enfant
+
+class Guitare extends Instrument {
+    public function accorder()
+    {
+        echo $this->nom . " est accordée ! <br>";
+    }
+    public function jouer() {
+        echo $this->nom . " : GLING GLING GLING ♪ <br>";
+    }
+}
 
 
 
@@ -41,7 +67,36 @@
 // Batterie :
 // - Redéfinir jouer() : "🥁 [nom] : BOOM BOOM CRASH ♪♫"
 
+class Piano extends Instrument {
+    public function accorder()
+    {
+        echo $this->nom . " est accordée ! <br>";
+    }
+    public function jouer() {
+        echo $this->nom . " : PLONK PLONK PLONK ♫ <br>";
+    }
+}
 
+
+class Batterie extends Instrument {
+    public function accorder()
+    {
+        echo $this->nom . " est accordée ! <br>";
+    }
+    public function jouer() {
+        echo $this->nom . " : BOOM BOOM CRASH ♪♫ <br>";
+    }
+}
+
+class Violon extends Instrument {
+    public function accorder()
+    {
+        echo $this->nom . " est accordée ! <br>";
+    }
+    public function jouer() {
+        echo $this->nom . " : TRIN TRIN TRIN ♫♫ <br>";
+    }
+}
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -60,6 +115,17 @@
 //     $instrument->jouer();
 // }
 
+$orchestre = [
+    new Guitare("Fender"),
+    new Piano("Yamaha"),
+    new Batterie("Pearl"),
+    new Violon("Stradivarius")
+];
+
+foreach ($orchestre as $instrument) {
+    $instrument->accorder();
+    $instrument->jouer();
+}
 
 
 

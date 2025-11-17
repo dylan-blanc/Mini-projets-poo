@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 📐 PROJET 06 : CLASSES ABSTRAITES
  * Concept : Classes abstraites (forcer l'implémentation)
@@ -21,6 +22,25 @@
 // abstract class Forme { ... }
 // abstract public function calculerAire();
 
+abstract class Forme
+{
+    protected $nom;
+
+    public function __construct($nom)
+    {
+        $this->nom = $nom;
+    }
+
+    abstract public function calculerAire();
+
+    abstract public function calculerPerimetre();
+
+    public function afficher()
+    {
+        echo "La forme " . $this->nom . " a une aire de " . $this->calculerAire() . " et un périmètre de " . $this->calculerPerimetre() . " <br>";
+    }
+}
+
 
 
 
@@ -35,7 +55,26 @@
 //
 // Indice : Tu DOIS implémenter calculerAire(), sinon erreur !
 
+class Cercle extends Forme
+{
+    private $rayon;
 
+    public function __construct($rayon)
+    {
+        parent::__construct("Cercle");
+        $this->rayon = $rayon;
+    }
+
+    public function calculerAire()
+    {
+        return pi() * $this->rayon * $this->rayon;
+    }
+
+    public function calculerPerimetre()
+    {
+        return 2 * pi() * $this->rayon;
+    }
+}
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -47,7 +86,51 @@
 // - Constructeur
 // - Implémenter calculerAire() : return $largeur * $hauteur;
 
+class rectangele extends Forme
+{
+    private $largeur;
+    private $hauteur;
 
+    public function __construct($largeur, $hauteur)
+    {
+        parent::__construct("Rectangle");
+        $this->largeur = $largeur;
+        $this->hauteur = $hauteur;
+    }
+
+    public function calculerAire()
+    {
+        return $this->largeur * $this->hauteur;
+    }
+
+    public function calculerPerimetre()
+    {
+        return 2 * ($this->largeur + $this->hauteur);
+    }
+}
+
+class Triangle extends Forme
+{
+    private $base;
+    private $hauteur;
+
+    public function __construct($base, $hauteur)
+    {
+        parent::__construct("Triangle");
+        $this->base = $base;
+        $this->hauteur = $hauteur;
+    }
+
+    public function calculerAire()
+    {
+        return $this->base * $this->hauteur / 2;
+    }
+
+    public function calculerPerimetre()
+    {
+        return $this->base + 2 * sqrt( ($this->base / 2) ** 2 + $this->hauteur ** 2 );
+    }
+}
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -63,7 +146,14 @@
 // Essaie de créer une Forme directement :
 // $forme = new Forme("Test");  ← Ça va planter ! C'est normal.
 
+$cercle = new Cercle(5);
+$cercle->afficher();
 
+$rectangle = new rectangele(10, 20);
+$rectangle->afficher();
+
+$triangle = new Triangle(10, 15);
+$triangle->afficher();
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -77,4 +167,3 @@
 //
 // 🎯 Prochaine étape : Projet 07 - Interfaces (contrat 100% strict)
 //
-?>

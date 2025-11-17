@@ -18,7 +18,26 @@
 //
 // Indice : protected permet aux classes enfants d'accéder à la propriété
 
+class Animal {
+    protected $nom;
+    protected $age;
 
+    public function __construct($nom) {
+        $this->nom = $nom;
+    }
+
+    public function manger() {
+        echo $this->nom . " mange... <br>";
+    }
+
+    public function dormir() {
+        echo $this->nom . " dort... <br>";
+    }
+
+    public function sePresenter() {
+        echo "Je m'appelle " . $this->nom . " et j'ai " . $this->age . " ans. <br>";
+    }
+}
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -33,6 +52,13 @@
 //
 // Indice : class Chien extends Animal { ... }
 
+class chien extends Animal {
+    protected $age = 4;
+    public function aboyer() {
+        echo $this->nom . " : waff waff ! <br>";
+    }
+}
+
 
 
 
@@ -43,7 +69,12 @@
 // Crée une classe 'Chat' qui hérite de Animal :
 // - Ajoute une méthode miauler() : "🐈 [nom] : MIAOU !"
 
-
+class chat extends Animal {
+    protected $age = 1;
+    public function miaule() {
+        echo $this->nom . " : nya nya ! <br>";
+    }
+}
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -53,7 +84,12 @@
 // Crée une classe 'Oiseau' qui hérite de Animal :
 // - Ajoute une méthode voler() : "🦅 [nom] vole dans le ciel !"
 
-
+class oiseau extends Animal {
+    protected $age = 6;
+    public function voler() {
+        echo $this->nom . " vole dans le ciel ! <br>";
+    }
+}
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -69,7 +105,23 @@
 // - Les méthodes héritées (manger, dormir)
 // - Les méthodes spécifiques (aboyer, miauler, voler)
 
-
+$chien = new chien ("Rex");
+$chien->sePresenter();
+$chien->manger();
+$chien->dormir();
+$chien->aboyer();
+echo "<br>";
+$chat = new chat ("Minou");
+$chat->sePresenter();
+$chat->manger();
+$chat->dormir();
+$chat->miaule();
+echo "<br>";
+$oiseau = new oiseau ("Tweety");
+$oiseau->sePresenter();
+$oiseau->manger();
+$oiseau->dormir();
+$oiseau->voler();
 
 
 // ─────────────────────────────────────────────────────────────────────────
