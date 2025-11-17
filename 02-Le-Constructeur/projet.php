@@ -14,19 +14,35 @@
 // - Propriété public $titulaire
 // - Propriété public $solde
 
+class CompteBancaire {
+    public $titulaire;
+    public $solde;
 
 
 
-// ─────────────────────────────────────────────────────────────────────────
-// TODO 2 : Ajouter le constructeur
-// ─────────────────────────────────────────────────────────────────────────
-//
-// Ajoute un constructeur qui :
-// 1. Prend 2 paramètres : $titulaire, $soldeInitial
-// 2. Initialise les propriétés
-// 3. Affiche : "✅ Compte créé pour [titulaire] avec [solde]€"
-//
-// Indice : public function __construct($param1, $param2) { ... }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // TODO 2 : Ajouter le constructeur
+    // ─────────────────────────────────────────────────────────────────────────
+    //
+    // Ajoute un constructeur qui :
+    // 1. Prend 2 paramètres : $titulaire, $soldeInitial
+    // 2. Initialise les propriétés
+    // 3. Affiche : "✅ Compte créé pour [titulaire] avec [solde]€"
+    //
+    // Indice : public function __construct($param1, $param2) { ... }
+
+    public function __construct($titulaire, $soldeInitial = 0)
+    {
+        $this->titulaire = $titulaire;
+        if (is_numeric($soldeInitial) && $soldeInitial >= 0) {
+            $this->solde = $soldeInitial;
+        } else {
+            $this->solde = 0;
+            echo "Solde initial invalide, solde mis à 0€ par defaut <br>";
+        }
+        echo "Compte cree pour " . $this->titulaire . " avec " . $this->solde . "€ <br>";
+    }
 
 
 
@@ -43,6 +59,23 @@
 //
 // 2. afficherSolde() :
 //    - Affiche "💰 Solde de [titulaire] : [solde]€"
+
+public function deposer($montant) {
+    if (is_numeric($montant) && $montant > 0) {
+        $this->solde += $montant;
+        echo "Depot de " . $montant . "€ <br>";
+    } else {
+        echo "Montant invalide <br>";
+    }
+}
+
+
+    public function afficherSolde()
+    {
+        echo "solde de " . $this->titulaire . " : " . $this->solde . "€ <br>";
+    }
+   
+}
 
 
 
@@ -62,6 +95,19 @@
 //
 // Indice : $compte = new CompteBancaire("Jean", 1000);
 
+$compte1 = new CompteBancaire("Jean", 1000);
+$compte1->deposer(200);
+$compte1->afficherSolde();
+echo "<br>";
+
+$compte2 = new CompteBancaire("Marie", 500);
+$compte2->deposer(200);
+$compte2->afficherSolde();
+echo "<br>";
+
+$compte3 = new CompteBancaire("Jean-Negatif", -300);
+$compte3->deposer(200);
+$compte3->afficherSolde();
 
 
 

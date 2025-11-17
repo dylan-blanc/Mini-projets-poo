@@ -17,24 +17,48 @@
 //
 // Indice : class NomDeClasse { ... }
 
+class Voiture {
+    public $marque;
+    public $couleur;
+    public $vitesseMax;
+    public $kilometrage = 0;
 
 
 
-// ─────────────────────────────────────────────────────────────────────────
-// TODO 2 : Ajouter les méthodes
-// ─────────────────────────────────────────────────────────────────────────
-//
-// Dans la classe Voiture, ajoute :
-//
-// 1. Une méthode demarrer() qui affiche :
-//    "🚗 Vrooooom ! La [marque] démarre !"
-//
-// 2. Une méthode klaxonner() qui affiche :
-//    "🎺 POUET POUET ! ([couleur])"
-//
-// Indice : Utilise $this-> pour accéder aux propriétés
 
 
+    // ─────────────────────────────────────────────────────────────────────────
+    // TODO 2 : Ajouter les méthodes
+    // ─────────────────────────────────────────────────────────────────────────
+    //
+    // Dans la classe Voiture, ajoute :
+    //
+    // 1. Une méthode demarrer() qui affiche :
+    //    "🚗 Vrooooom ! La [marque] démarre !"
+    //
+    // 2. Une méthode klaxonner() qui affiche :
+    //    "🎺 POUET POUET ! ([couleur])"
+    //
+    // Indice : Utilise $this-> pour accéder aux propriétés
+
+public function demarrer() {
+    echo "Vroom! la " . $this->marque . " demarre <br>";
+}
+
+public function klaxonner() {
+    echo "Tut Tut! (" . $this->couleur . ") <br>";
+    }
+
+public function freiner() {
+        echo "On Freine! la " . $this->marque . " s'arrete. <br>";
+    }
+
+public function rouler($distance)
+    {
+        $this->kilometrage += $distance;
+        echo $this->marque . " a roulé " . $distance . " km. Total : " . $this->kilometrage . " km.<br>";
+    }
+}
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -55,6 +79,16 @@
 //
 // Indice : $objet = new NomClasse();
 
+$ferrari = new Voiture();
+$ferrari->marque ="Ferrari";
+$ferrari->couleur ="Rouge";
+$ferrari->vitesseMax =320;
+
+
+$twingo = new Voiture();
+$twingo->marque ="Renault Twingo";
+$twingo->couleur ="Jaune";
+$twingo->vitesseMax =150;
 
 
 
@@ -69,6 +103,22 @@
 //
 // Exemple : $ferrari->demarrer();
 
+$ferrari->demarrer();
+$ferrari->klaxonner();
+echo "vitesse max : " . $ferrari->vitesseMax . "<br>";
+$ferrari->rouler(100);
+$ferrari->rouler(80);
+$ferrari->rouler(30);
+$ferrari->freiner();
+echo "<br>";
+
+$twingo->demarrer();
+$twingo->klaxonner();
+echo "vitesse max : " .  $twingo->vitesseMax . "<br>";
+$twingo->rouler(100);
+$twingo->rouler(50);
+$twingo->rouler(20);
+$twingo->freiner();
 
 
 
@@ -83,4 +133,4 @@
 //
 // 🎯 Prochaine étape : Projet 02 - Le Constructeur
 //
-?>
+
