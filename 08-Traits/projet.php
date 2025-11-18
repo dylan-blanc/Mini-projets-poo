@@ -23,7 +23,39 @@
 //
 // Indice : trait NomTrait { ... }
 
+trait Nageable
+{
+    public static $compteur = 0;
+    public function nager()
+    {
+        self::$compteur++;
+        echo $this->nom . " nage comme un poisson ! <br>";
+    }
+}
 
+trait Volant {
+    public static $compteur = 0;
+    public function voler() {
+        self::$compteur++;
+        echo $this->nom . " vole dans les airs ! <br>";
+    }
+}
+
+trait Terrestre {
+    public static $compteur = 0;
+    public function marcher() {
+        self::$compteur++;
+        echo $this->nom . " marche sur le sol ! <br>";
+    }
+}
+
+trait Invisible {
+    public static $compteur = 0;
+    public function seRendreInvisible() {
+        self::$compteur++;
+        echo $this->nom . " devient invisible ! <br>";
+    }
+}
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -36,7 +68,19 @@
 // - A un constructeur
 // - A une méthode attaquer() : "⚔️ [nom] attaque avec son épée !"
 
+class Guerrier {
+    use Nageable, Terrestre;
 
+    public $nom;
+
+    public function __construct($nom) {
+        $this->nom = $nom;
+    }
+
+    public function attaquer() {
+        echo $this->nom . " attaque avec son épée ! <br>";
+    }
+}
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -51,7 +95,37 @@
 //
 // Indice : use Nageable, Volant, Invisible;
 
+class Mage {
+    use Nageable, Volant, Invisible;
 
+    public $nom;
+
+    public function __construct($nom) {
+        $this->nom = $nom;
+    }
+
+    public function lancerSort() {
+        echo $this->nom . " lance un sort ! <br>";
+    }
+}
+
+class Manchot {
+    use Nageable, Terrestre;
+
+    public $nom;
+
+    public function __construct($nom) {
+        $this->nom = $nom;
+    }
+
+    public function manchote() {
+        echo $this->nom . " Est un manchot.... <br>";
+    }
+
+    public function manger() {
+        echo $this->nom . " mange du poisson ! <br>";
+    }
+}
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -72,6 +146,24 @@
 // - nager()
 // - seRendreInvisible()
 
+$guerrier = new Guerrier("Conan");
+$guerrier->attaquer();
+$guerrier->nager();
+echo "<br>";
+
+$magicien = new Mage("Gandalf");
+$magicien->lancerSort();
+$magicien->voler();
+$magicien->nager();
+$magicien->seRendreInvisible();
+echo "<br>";
+
+
+$manchot = new Manchot("KRiKri");
+$manchot->manchote();
+$manchot->marcher();
+$manchot->nager();
+$manchot->manger();
 
 
 

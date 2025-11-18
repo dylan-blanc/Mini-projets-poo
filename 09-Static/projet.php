@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 📊 PROJET 09 : STATIC & SELF
  * Concept : Propriétés et méthodes statiques (partagées)
@@ -23,33 +24,71 @@
 // private static $compteur = 0;
 // self::$compteur++;
 
+class Utilisateur
+{
+    private static $compteur = 0;
+    private static $utilisateurs = [];
+    private $nom;
+    private $id;
+
+    public function __construct($nom)
+    {
+        self::$compteur++;
+        $this->id = self::$compteur;
+        $this->nom = $nom;
+        self::$utilisateurs[] = $this; // Ajout de l'utilisateur au tableau statique
+        echo " Utilisateur #" . $this->id . " créé : " . $this->nom . " <br>";
+    }
+
+
+    public static function resetCompteur()
+    {
+        self::$compteur = 0;
+        self::$utilisateurs = [];
+    }
+
+    public static function affichertous()
+    {
+        foreach (self::$utilisateurs as $utilisateur) {
+            echo "👤 User #" . $utilisateur->id . " : " . $utilisateur->nom . " <br>";
+        }
+    }
 
 
 
-// ─────────────────────────────────────────────────────────────────────────
-// TODO 2 : Ajouter une méthode statique
-// ─────────────────────────────────────────────────────────────────────────
-//
-// Ajoute une méthode STATIQUE getNombreUtilisateurs() qui :
-// - Retourne self::$compteur
-//
-// Indice :
-// public static function getNombreUtilisateurs() {
-//     return self::$compteur;
-// }
+
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // TODO 2 : Ajouter une méthode statique
+    // ─────────────────────────────────────────────────────────────────────────
+    //
+    // Ajoute une méthode STATIQUE getNombreUtilisateurs() qui :
+    // - Retourne self::$compteur
+    //
+    // Indice :
+    // public static function getNombreUtilisateurs() {
+    //     return self::$compteur;
+    // }
+
+    public static function getNombreUtilisateurs()
+    {
+        return self::$compteur;
+    }
 
 
 
+    // ─────────────────────────────────────────────────────────────────────────
+    // TODO 3 : Ajouter une méthode normale
+    // ─────────────────────────────────────────────────────────────────────────
+    //
+    // Ajoute une méthode afficher() qui affiche :
+    // "👤 User #[id] : [nom]"
 
-// ─────────────────────────────────────────────────────────────────────────
-// TODO 3 : Ajouter une méthode normale
-// ─────────────────────────────────────────────────────────────────────────
-//
-// Ajoute une méthode afficher() qui affiche :
-// "👤 User #[id] : [nom]"
-
-
-
+    public function afficher()
+    {
+        echo "👤 User #" . $this->id . " : " . $this->nom . " <br>";
+    }
+}
 
 // ─────────────────────────────────────────────────────────────────────────
 // TODO 4 : Créer et tester des utilisateurs
@@ -66,7 +105,19 @@
 //
 // Indice : Méthode statique → Classe::methode()
 
+echo "Nombre d'utilisateurs : " . Utilisateur::getNombreUtilisateurs() . "<br>";
 
+$user1 = new Utilisateur("Jean");
+$user2 = new Utilisateur("Marie");
+$user3 = new Utilisateur("Paul");
+
+echo "Nombre d'utilisateurs : " . Utilisateur::getNombreUtilisateurs() . "<br>";
+
+$user1->afficher();
+$user2->afficher();
+$user3->afficher();
+echo "<br>";
+echo Utilisateur::affichertous();
 
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -80,4 +131,3 @@
 //
 // 🎯 Prochaine étape : Projet 10 - Namespaces (organisation du code)
 //
-?>
